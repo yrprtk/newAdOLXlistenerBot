@@ -4,10 +4,11 @@ const Listen = require('./models/Listen');
 const config = require('./config');
 const { listen } = require('./utils/utils');
 const logger = require('./utils/logger');
+require('dotenv').config();
 
 (async () => {
   try {
-    await mongoose.connect(config.dbURL, {
+    await mongoose.connect(process.env.DB_URL, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });

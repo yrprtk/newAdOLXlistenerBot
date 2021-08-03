@@ -1,0 +1,19 @@
+services:
+  app:
+    container_name: app
+    build: .
+    restart: always
+    links:
+      - mongo
+    volumes: 
+      - ./combined.log:/usr/src/app/combined.log
+  mongo:
+    container_name: mongo
+    image: mongo:4.4-rc-focal@sha256:4575a1589b2025786a0547127d58e61beb4748f62b99eb9f47f1fac8f139546b
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes: 
+      - mongodata:/data/db
+volumes:
+  mongodata:

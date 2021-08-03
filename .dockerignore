@@ -1,0 +1,9 @@
+.git
+.vscode
+node_modules
+.dockerignore
+.eslintrc.js
+.gitignore
+combined.log
+docker-compose
+Dockerfile

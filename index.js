@@ -2,13 +2,13 @@ const TelegramBot = require('node-telegram-bot-api');
 const mongoose = require('mongoose');
 const childProcess = require('child_process');
 const Listen = require('./models/Listen');
-const config = require('./config');
 const { isDuplicateLink, isValidLink, validateFilter } = require('./utils/utils');
 const logger = require('./utils/logger');
+require('dotenv').config();
 
 (async () => {
   try {
-    await mongoose.connect(config.dbURL, {
+    await mongoose.connect(process.env.DB_URL, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
@@ -22,7 +22,7 @@ const logger = require('./utils/logger');
       { command: '/help', description: 'Open help' },
     ];
 
-    const bot = new TelegramBot(config.token, { polling: true });
+    const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
 
     bot.setMyCommands(commands);
 
